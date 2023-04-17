@@ -22,15 +22,6 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APPID
 };
 
-// const firebaseConfig = {
-//   apiKey:import.meta.env.FIREBASE_API_KEY,
-//   authDomain: import.meta.env.FIREBASE_AUTH_DOMAIN,
-//   projectId: import.meta.env.FIREBASE_PROJECT_ID,
-//   storageBucket:import.meta.env.FIREBASE_STORAGE_BUCKET,
-//   messagingSenderId:  import.meta.env.FIREBASE_MESSAGING_SENDER_ID,
-//   appId: import.meta.env.FIREBASE_APP_ID
-// };
-
 const locales = {
     "en-US": "English (United States)",
 };
@@ -41,11 +32,12 @@ type Blog = {
     care: string;
     date: Date;
     image: string;
-    tags: string[];
     interests: string[];
     timeToRead: number;
     title: string,
-    description: string
+    description: string,
+    category: string,
+    trending: boolean
 }
 
 
@@ -56,14 +48,20 @@ const blogsCollection = buildCollection<Blog>({
     permissions: ({ authController }) => ({
         edit: true,
         create: true,
-        // we have created the roles object in the navigation builder
-        delete: false
+        delete: true
     }),
     properties: {
         age: {
             name: "age",
-            validation: { required: true },
-            dataType: "string"
+            validation: { required: false },
+            dataType: "string",
+            enumValues: {
+                age1: "18-39",
+                age2: "40-59",
+                age3: "60-79",
+                age4: "80+",
+                age5:"I prefer not to say"
+            }
         },
         author: {
             name: "author",
@@ -74,8 +72,14 @@ const blogsCollection = buildCollection<Blog>({
         },
         care: {
             name: "care",
-            validation: { required: true },
+            validation: { required: false },
             dataType: "string",
+            enumValues: {
+                range1: "0 - 1 year",
+                range2: "1 - 3 years",
+                range3: "3 - 5 years",
+                range4: "> 5 years",
+            }
         },
         date: {
             dataType: "date",
@@ -89,20 +93,22 @@ const blogsCollection = buildCollection<Blog>({
                 acceptedFiles: ["image/*"]
             }
         }),
-        tags: {
-            name: "tags",
-            validation: { required: true },
-            dataType: "array",
-            of: {
-                dataType: "string"
-            }
-        },
         interests: {
           name: "interests",
-          validation: { required: true },
+          validation: { required: false },
           dataType: "array",
           of: {
-              dataType: "string"
+              dataType: "string",
+              enumValues: {
+                int1: "Hemodialysis",
+                int2: "Kidney Basics",
+                int3: "Nutrition",
+                int4: "Patient Story",
+                int5: "Medical Health Support",
+                int6: "Taxation & Programs",
+                int7: "Diabetes",
+                int8: "Weight Management",
+            }
           }
       },
         description: {
@@ -118,6 +124,24 @@ const blogsCollection = buildCollection<Blog>({
         title: {
             name: "title",
             dataType: "string",
+        },
+        category: {
+            name: "category",
+            dataType: "string",
+            enumValues: {
+                cat1: "Travel",
+                cat2: "Hemodialysis",
+                cat3: "Medication",
+                cat4: "Renal Program",
+                cat5: "Weight Management",
+                cat6: "Mental Health",
+                cat7: "Travel",
+                cat8: "Kidney Failure",
+            }
+        },
+        trending: {
+            name: "trending",
+            dataType: "boolean",
         }
     }
 });
