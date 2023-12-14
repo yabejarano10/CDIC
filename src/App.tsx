@@ -56,11 +56,11 @@ const blogsCollection = buildCollection<Blog>({
             validation: { required: false },
             dataType: "string",
             enumValues: {
-                age1: "18-39",
-                age2: "40-59",
-                age3: "60-79",
-                age4: "80+",
-                age5:"I prefer not to say"
+                "18-39": "18-39",
+                "40-59": "40-59",
+                "60-79": "60-79",
+                "80+": "80+",
+                "I prefer not to say":"I prefer not to say"
             }
         },
         author: {
@@ -75,10 +75,10 @@ const blogsCollection = buildCollection<Blog>({
             validation: { required: false },
             dataType: "string",
             enumValues: {
-                range1: "0 - 1 year",
-                range2: "1 - 3 years",
-                range3: "3 - 5 years",
-                range4: "> 5 years",
+                "0 - 1 year": "0 - 1 year",
+                "1 - 3 years": "1 - 3 years",
+                "3 - 5 years": "3 - 5 years",
+                "> 5 years": "> 5 years",
             }
         },
         date: {
@@ -90,7 +90,8 @@ const blogsCollection = buildCollection<Blog>({
             dataType: "string",
             storage: {
                 storagePath: "images",
-                acceptedFiles: ["image/*"]
+                acceptedFiles: ["image/*"],
+                storeUrl: true 
             }
         }),
         interests: {
@@ -100,21 +101,21 @@ const blogsCollection = buildCollection<Blog>({
           of: {
               dataType: "string",
               enumValues: {
-                int1: "Hemodialysis",
-                int2: "Kidney Basics",
-                int3: "Nutrition",
-                int4: "Patient Story",
-                int5: "Medical Health Support",
-                int6: "Taxation & Programs",
-                int7: "Diabetes",
-                int8: "Weight Management",
+                Hemodialysis: "Hemodialysis",
+                KidneyBasics: "Kidney Basics",
+                Nutrition: "Nutrition",
+                PatientStory: "Patient Story",
+                MedicalHealthSupport: "Medical Health Support",
+                TaxationAndPrograms: "Taxation and Programs",
+                Diabetes: "Diabetes",
+                WeightManagement: "Weight Management",
             }
           }
       },
         description: {
             name: "Description",
             dataType: "string",
-            columnWidth: 300
+            markdown: true,
         },
         timeToRead: {
             name: "timeToRead",
@@ -129,14 +130,13 @@ const blogsCollection = buildCollection<Blog>({
             name: "category",
             dataType: "string",
             enumValues: {
-                cat1: "Travel",
-                cat2: "Hemodialysis",
-                cat3: "Medication",
-                cat4: "Renal Program",
-                cat5: "Weight Management",
-                cat6: "Mental Health",
-                cat7: "Travel",
-                cat8: "Kidney Failure",
+                Travel: "Travel",
+                Hemodialysis: "Hemodialysis",
+                Medication: "Medication",
+                RenalProgram: "Renal Program",
+                WeightManagement: "Weight Management",
+                MentalHealth: "Mental Health",
+                KidneyFailure: "Kidney Failure",
             }
         },
         trending: {

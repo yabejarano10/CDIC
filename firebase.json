@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "cdic-7bebf",
+    "site": "cdic-79e24",
     "public": "dist",
     "ignore": [
       "firebase.json",
